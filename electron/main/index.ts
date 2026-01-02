@@ -13,6 +13,9 @@ import { initCookies, storeCookies } from './utils/cookie';
 import { loadServerBuild, serveAsset } from './utils/serve';
 import { reloadOnChange } from './utils/reload';
 
+// eslint-disable-next-line @typescript-eslint/no-var-requires
+const { checkForUpdatesAsync } = require('../../scripts/update-logic.cjs');
+
 Object.assign(console, log.functions);
 
 console.debug('main: import.meta.env:', import.meta.env);
@@ -196,6 +199,20 @@ app.on('window-all-closed', () => {
     app.quit();
   }
 });
+
+async function handleUpdates() {
+  const updated = await checkForUpdatesAsync();
+  if (updated) {
+    app.relaunch();
+    app.quit();
+  }
+}
+
+// Check for updates on startup
+handleUpdates();
+
+// Check for updates every 30 minutes
+setInterval(handleUpdates, 30 * 60 * 1000);
 
 reloadOnChange();
 setupAutoUpdater();
