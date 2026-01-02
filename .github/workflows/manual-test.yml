@@ -24,6 +24,7 @@ jobs:
 
       - name: Set package name (branch -> package)
         id: package
+        shell: bash
         run: |
           owner=$(echo "${{ github.repository_owner }}" | tr '[:upper:]' '[:lower:]')
 
@@ -37,7 +38,6 @@ jobs:
           fi
 
           echo "name=${owner}/${pkg}" >> $GITHUB_OUTPUT
-        shell: bash
 
       - name: Set up Docker Buildx
         uses: docker/setup-buildx-action@v3
@@ -54,12 +54,13 @@ jobs:
 
       - name: List local images (confirm)
         run: docker images --format "table {{.Repository}}\t{{.Tag}}\t{{.ID}}\t{{.Size}}"
+        shell: bash
 
       - name: Inspect the built image
+        shell: bash
         run: |
           docker image inspect ${{ env.REGISTRY }}/${{ steps.package.outputs.name }}:test-build || \
           (echo "Image inspect failed — build may have failed" && exit 1)
-        shell: bash
 
   pnpm-test:
     name: Pnpm Test
@@ -69,14 +70,15 @@ jobs:
         uses: actions/checkout@v4
 
       - name: Setup Node.js
-        uses: actions/setup-node@v3
+        uses: actions/setup-node@v4
         with:
           node-version: 20
           cache: 'pnpm'
 
-      - name: Install pnpm
-        run: npm install -g pnpm
-        shell: bash
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v4
+        with:
+          version: '9.14.4'
 
       - name: Install dependencies
         run: pnpm install
@@ -108,10 +110,9 @@ jobs:
           node-version: ${{ matrix.node-version }}
 
       - name: Install pnpm
-        uses: pnpm/action-setup@v2
+        uses: pnpm/action-setup@v4
         with:
-          version: 9.14.4
-          run_install: false
+          version: '9.14.4'
 
       - name: Get pnpm store directory
         shell: bash
@@ -141,6 +142,7 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           NODE_OPTIONS: "--max_old_space_size=4096"
+        shell: bash
         run: |
           if [ "$RUNNER_OS" = "Windows" ]; then
             pnpm run electron:build:win
@@ -149,7 +151,6 @@ jobs:
           else
             pnpm run electron:build:linux
           fi
-        shell: bash
 
   dependency-scan:
     name: Dependency Vulnerability Scan
@@ -292,12 +293,12 @@ jobs:
         uses: ./.github/actions/setup-and-build
 
       - name: Start development server
+        env:
+          CI: true
         run: |
           pnpm run build
           pnpm run start &
           sleep 15
-        env:
-          CI: true
         shell: bash
 
       - name: Run accessibility tests with axe
