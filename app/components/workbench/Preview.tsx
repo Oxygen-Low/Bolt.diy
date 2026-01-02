@@ -701,12 +701,22 @@ export const Preview = memo(({ setSelectedElement }: PreviewProps) => {
                   targetPath = '/' + targetPath;
                 }
 
-                const fullUrl = activePreview.baseUrl + targetPath;
-                setIframeUrl(fullUrl);
-                setDisplayPath(targetPath);
+                try {
+                  const base = new URL(activePreview.baseUrl);
+                  const url = new URL(targetPath, base);
 
-                if (inputRef.current) {
-                  inputRef.current.blur();
+                  // Enforce same-origin and allowed protocols to avoid loading arbitrary or unsafe URLs.
+                  if (url.origin === base.origin && (url.protocol === 'http:' || url.protocol === 'https:')) {
+                    const fullUrl = url.toString();
+                    setIframeUrl(fullUrl);
+                    setDisplayPath(targetPath);
+
+                    if (inputRef.current) {
+                      inputRef.current.blur();
+                    }
+                  }
+                } catch {
+                  // Invalid URL: ignore and leave the current iframeUrl unchanged.
                 }
               }
             }}
