@@ -17,10 +17,16 @@ After you create the ``.env.local`` file, you can run ``pnpm run dev`` or ``pnpm
 
 # Features List
 
-Here is a list of all the features we added (or are planning to add), and are actively maintaining (or developing):
+Here is a list of all the features we added that are different from the normal Bolt.diy:
+
+# Roadmap
+
+Here are all the things we are planning to add, in order, with their development status:
+
+
 
 # Experimental/Beta Branch
-If you want to test some features out early, or want to have access to some features early, use the beta branch. You can switch to it with ``git checkout Beta``.
+If you want to test some features out early or want to have access to some features early, use the beta branch. You can switch to it with ``git checkout Beta``.
 
 Note that the beta branch will likely contain errors or bugs way more often than the main/stable branch.
 
