@@ -217,7 +217,8 @@ async function restoreEnvLocal() {
 
     return win;
   })
-  .then((win) => setupMenu(win));
+  .then((win) => setupMenu(win))
+  .then(() => setupAutoUpdater());
 
 app.on('window-all-closed', () => {
   if (process.platform !== 'darwin') {
@@ -226,4 +227,3 @@ app.on('window-all-closed', () => {
 });
 
 reloadOnChange();
-setupAutoUpdater();
