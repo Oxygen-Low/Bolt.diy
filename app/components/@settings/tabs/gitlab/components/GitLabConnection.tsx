@@ -22,6 +22,23 @@ export default function GitLabConnection({ connectionTest, onTestConnection }: G
   const [token, setToken] = useState('');
   const [gitlabUrl, setGitlabUrl] = useState('https://gitlab.com');
 
+  const getPersonalAccessTokensUrl = (baseUrl: string) => {
+    const defaultUrl = 'https://gitlab.com/-/user_settings/personal_access_tokens';
+    try {
+      const url = new URL(baseUrl);
+      if (url.protocol !== 'http:' && url.protocol !== 'https:') {
+        return defaultUrl;
+      }
+      const basePath = url.pathname.replace(/\/+$/, '');
+      url.pathname = `${basePath}/-/user_settings/personal_access_tokens`;
+      url.search = '';
+      url.hash = '';
+      return url.toString();
+    } catch {
+      return defaultUrl;
+    }
+  };
+
   const handleConnect = async (event: React.FormEvent) => {
     event.preventDefault();
 
@@ -132,7 +149,7 @@ export default function GitLabConnection({ connectionTest, onTestConnection }: G
               />
               <div className="mt-2 text-sm text-bolt-elements-textSecondary">
                 <a
-                  href={`${gitlabUrl}/-/user_settings/personal_access_tokens`}
+                  href={getPersonalAccessTokensUrl(gitlabUrl)}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="text-bolt-elements-borderColorActive hover:underline inline-flex items-center gap-1"
