@@ -19,6 +19,9 @@ export default defineConfig((config) => {
     build: {
       target: 'esnext',
     },
+    optimizeDeps: {
+      exclude: ['@xterm/xterm', '@xterm/addon-fit', '@xterm/addon-web-links'],
+    },
     plugins: [
       nodePolyfills({
         include: ['buffer', 'process', 'util', 'stream'],
