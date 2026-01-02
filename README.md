@@ -29,13 +29,6 @@ Here is a list of all the features we added that are different from the normal B
 Here are all the things we are planning to add, in order, with their development status:
 
 
-# Experimental/Beta Branch
-If you want to test some features out early or want to have access to some features early, use the beta branch. You can switch to it with ``git checkout beta``.
-
-Note that the beta branch will likely contain errors or bugs way more often than the main/stable branch.
-
-Testing for bugs and issues in the beta branch will be appreciated.
-
 # Credits
 
 It would be almost impossible to maintain and update this by myself (since I have to work on other projects constantly), so I use:
