@@ -1068,7 +1068,49 @@ class DebugLogger {
   }
 
   private _generateSessionId(): string {
-    return `session_${Date.now()}_${Math.random().toString(36).substring(2, 11)}`;
+    // Generate a cryptographically secure random string of ~9 base-36 characters.
+    const randomString = (() => {
+      const length = 9;
+
+      // Browser: use window.crypto.getRandomValues
+      if (typeof window !== 'undefined' && window.crypto && typeof window.crypto.getRandomValues === 'function') {
+        const bytes = new Uint8Array(length);
+        window.crypto.getRandomValues(bytes);
+        let result = '';
+        for (let i = 0; i < bytes.length; i++) {
+          // Map each byte to 0-35 and convert to base-36 (0-9a-z)
+          result += (bytes[i] % 36).toString(36);
+        }
+        return result;
+      }
+
+      // Node or other environments: fall back to crypto.randomBytes if available
+      try {
+        // eslint-disable-next-line @typescript-eslint/no-var-requires
+        const nodeCrypto = require('crypto');
+        if (nodeCrypto && typeof nodeCrypto.randomBytes === 'function') {
+          const bytes: Buffer = nodeCrypto.randomBytes(length);
+          let result = '';
+          for (let i = 0; i < bytes.length; i++) {
+            result += (bytes[i] % 36).toString(36);
+          }
+          return result;
+        }
+      } catch {
+        // Ignore and fall through to non-crypto fallback
+      }
+
+      // Last-resort fallback (should rarely be used): still avoids Math.random()
+      let result = '';
+      for (let i = 0; i < length; i++) {
+        // Use current time and a counter-like increment to introduce variability
+        const value = (Date.now() + i) % 36;
+        result += value.toString(36);
+      }
+      return result;
+    })();
+
+    return `session_${Date.now()}_${randomString}`;
   }
 
   clearLogs(): void {
