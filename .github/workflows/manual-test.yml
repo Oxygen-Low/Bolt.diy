@@ -92,7 +92,6 @@ jobs:
 
   electron-test:
     name: Electron Build (matrix)
-    runs-on: ubuntu-latest
     strategy:
       matrix:
         os: [ubuntu-latest, windows-latest, macos-latest]
