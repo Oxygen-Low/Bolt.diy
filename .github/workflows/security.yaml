@@ -2,9 +2,9 @@ name: Security Analysis
 
 on:
   push:
-    branches: [main, stable]
+    branches: [main, beta]
   pull_request:
-    branches: [main]
+    branches: [main, beta]
   schedule:
     # Run weekly security scan on Sundays at 2 AM
     - cron: '0 2 * * 0'

@@ -5,6 +5,7 @@ on:
     types: [opened, synchronize, reopened, labeled, unlabeled]
     branches:
       - main
+      - beta
 
 permissions:
   contents: read
