@@ -15,6 +15,27 @@ export function GitLabAuthDialog({ isOpen, onClose }: GitLabAuthDialogProps) {
   const [token, setToken] = useState('');
   const [gitlabUrl, setGitlabUrl] = useState('https://gitlab.com');
 
+  const getSafeGitlabUrl = (base: string): string => {
+    try {
+      // Try to parse the user-provided URL; if it has no protocol, assume https.
+      let url: URL;
+      try {
+        url = new URL(base);
+      } catch {
+        url = new URL(base, 'https://gitlab.com');
+      }
+      if (url.protocol !== 'http:' && url.protocol !== 'https:') {
+        throw new Error('Unsupported protocol');
+      }
+      // Normalize by stripping any trailing slash for consistent path joining.
+      url.pathname = url.pathname.replace(/\/+$/, '');
+      return url.toString().replace(/\/+$/, '');
+    } catch {
+      // Fallback to the default GitLab URL if parsing/validation fails.
+      return 'https://gitlab.com';
+    }
+  };
+
   const handleConnect = async (event: React.FormEvent) => {
     event.preventDefault();
 
@@ -76,6 +97,8 @@ export function GitLabAuthDialog({ isOpen, onClose }: GitLabAuthDialogProps) {
                 </div>
               </div>
 
+              const safeGitlabUrl = getSafeGitlabUrl(gitlabUrl || '');
+
               <form onSubmit={handleConnect} className="space-y-4">
                 <div>
                   <label className="block text-sm text-bolt-elements-textSecondary dark:text-bolt-elements-textSecondary-dark mb-2">
@@ -122,7 +145,7 @@ export function GitLabAuthDialog({ isOpen, onClose }: GitLabAuthDialogProps) {
                   />
                   <div className="mt-2 text-xs text-bolt-elements-textSecondary dark:text-bolt-elements-textSecondary-dark">
                     <a
-                      href={`${gitlabUrl}/-/user_settings/personal_access_tokens`}
+                      href={`${safeGitlabUrl}/-/user_settings/personal_access_tokens`}
                       target="_blank"
                       rel="noopener noreferrer"
                       className="text-orange-500 hover:text-orange-600 hover:underline inline-flex items-center gap-1"
