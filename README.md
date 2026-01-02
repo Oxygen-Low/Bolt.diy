@@ -11,9 +11,9 @@ git clone https://github.com/Oxygen-Low/Bolt.diy
 cd Bolt.diy
 pnpm install
 ```
-After it finishes, you need to create the ``.env`` file. You can use ``.env.example`` for help.
+After it finishes, you need to create the ``.env.local`` file. You can use ``.env.example`` for help.
 
-After you create the ``.env`` file, you can run ``pnpm run dev`` or ``pnpm run dev --host`` or just do whatever you want with it.
+After you create the ``.env.local`` file, you can run ``pnpm run dev`` or ``pnpm run dev --host`` or just do whatever you want with it.
 
 # Features List
 
