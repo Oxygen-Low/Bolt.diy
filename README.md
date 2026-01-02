@@ -1,7 +1,6 @@
 This is a fork of Bolt.diy by Oxygen-Low. Feel free to use this for any reason.
 
-![CodeRabbit Pull Request Reviews](https://img.shields.io/coderabbit/prs/github/Oxygen-Low/Bolt.diy?utm_source=oss&utm_medium=github&utm_campaign=Oxygen-Low%2FBolt.diy&labelColor=171717&color=FF570A&link=https%3A%2F%2Fcoderabbit.ai&label=CodeRabbit+Reviews)[![GitHub stars](https://img.shields.io/github/stars/Oxygen-Low/Bolt.diy?style=flat-square&logo=github)](https://github.com/Oxygen-Low/Bolt.diy/stargazers)
-
+[![GitHub stars](https://img.shields.io/github/stars/Oxygen-Low/Bolt.diy?style=flat-square&labelColor=171717&color=FF570A&logo=github)](https://github.com/Oxygen-Low/Bolt.diy/stargazers) [![GitHub forks](https://img.shields.io/github/forks/Oxygen-Low/Bolt.diy?style=flat-square&labelColor=171717&color=FF570A&logo=github)](https://github.com/Oxygen-Low/Bolt.diy/network/members) [![Last commit](https://img.shields.io/github/last-commit/Oxygen-Low/Bolt.diy?style=flat-square&labelColor=171717&color=FF570A&logo=github)](https://github.com/Oxygen-Low/Bolt.diy/commits/main) [![Release version](https://img.shields.io/github/v/release/Oxygen-Low/Bolt.diy?style=flat-square&labelColor=171717&color=FF570A&logo=github)](https://github.com/Oxygen-Low/Bolt.diy/releases) [![License](https://img.shields.io/github/license/Oxygen-Low/Bolt.diy?style=flat-square&labelColor=171717&color=FF570A&logo=github)](https://github.com/Oxygen-Low/Bolt.diy/blob/main/LICENSE)
 
 
 Here is a simple setup for a fresh Ubuntu 24.12.0 server:
@@ -41,7 +40,7 @@ Testing for bugs and issues in the beta branch will be appreciated.
 
 It would be almost impossible to maintain and update this by myself (since I have to work on other projects constantly), so I use:
 
-[CodeRabbit](https://www.coderabbit.ai/)
+[CodeRabbit](https://www.coderabbit.ai/) ![CodeRabbit Pull Request Reviews](https://img.shields.io/coderabbit/prs/github/Oxygen-Low/Bolt.diy?utm_source=oss&utm_medium=github&utm_campaign=Oxygen-Low%2FBolt.diy&labelColor=171717&color=FF570A&link=https%3A%2F%2Fcoderabbit.ai&label=CodeRabbit+Reviews)
 
 [Google Labs Jules](https://jules.google.com/)
 
