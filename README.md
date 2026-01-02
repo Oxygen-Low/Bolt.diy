@@ -4,7 +4,7 @@ This is a fork of Bolt.diy by Oxygen-Low. Feel free to use this for any reason.
 
 [![CI/CD](https://github.com/Oxygen-Low/Bolt.diy/actions/workflows/ci.yaml/badge.svg)](https://github.com/Oxygen-Low/Bolt.diy/actions/workflows/ci.yaml) [![Code Quality](https://github.com/Oxygen-Low/Bolt.diy/actions/workflows/quality.yaml/badge.svg)](https://github.com/Oxygen-Low/Bolt.diy/actions/workflows/quality.yaml) [![Security Analysis](https://github.com/Oxygen-Low/Bolt.diy/actions/workflows/security.yaml/badge.svg)](https://github.com/Oxygen-Low/Bolt.diy/actions/workflows/security.yaml)
 
-[![Docker Publish](https://github.com/Oxygen-Low/Bolt.diy/actions/workflows/docker.yaml/badge.svg)](https://github.com/Oxygen-Low/Bolt.diy/actions/workflows/docker.yaml)
+[![Docker Publish](https://github.com/Oxygen-Low/Bolt.diy/actions/workflows/docker.yaml/badge.svg)](https://github.com/Oxygen-Low/Bolt.diy/actions/workflows/docker.yaml) [![Electron Build and Release](https://github.com/Oxygen-Low/Bolt.diy/actions/workflows/electron.yml/badge.svg)](https://github.com/Oxygen-Low/Bolt.diy/actions/workflows/electron.yml)
 
 
 Here is a simple setup for a fresh Ubuntu 24.12.0 server:
