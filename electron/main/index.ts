@@ -200,6 +200,11 @@ app.on('window-all-closed', () => {
   }
 });
 
+/**
+ * Checks for available application updates and relaunches the app if an update is available.
+ *
+ * If an update is found, the function calls the Electron app to relaunch and then quits the current process.
+ */
 async function handleUpdates() {
   const updated = await checkForUpdatesAsync();
   if (updated) {
