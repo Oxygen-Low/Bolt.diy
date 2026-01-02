@@ -4,6 +4,7 @@ on:
   push:
     branches:
       - main
+      - beta
   pull_request:
 
 # Cancel in-progress runs on the same branch/PR
