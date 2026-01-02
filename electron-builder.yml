@@ -55,9 +55,9 @@ npmRebuild: false
 
 publish:
   provider: github
-  owner: Derek-X-Wang
-  repo: bolt.local
-  private: true
+  owner: Oxygen-Low
+  repo: Bolt.diy
+  private: false
   releaseType: release
 
 electronDownload:
