@@ -28,7 +28,7 @@ Authentication System - Allow users to authenticate via the server, with users s
 Github Integration - Allow users to add github Personal Access Tokens to import, sync, and create new github repositories, to prevent data loss. - Planned after Authentication System
 
 # Experimental/Beta Branch
-If you want to test some features out early or want to have access to some features early, use the beta branch. You can switch to it with ``git checkout Beta``.
+If you want to test some features out early or want to have access to some features early, use the beta branch. You can switch to it with ``git checkout beta``.
 
 Note that the beta branch will likely contain errors or bugs way more often than the main/stable branch.
 
