@@ -1,6 +1,11 @@
 This is a fork of Bolt.diy by Oxygen-Low. Feel free to use this for any reason.
 
-[![Stars](https://img.shields.io/badge/Stars-1.2k-FF570A?style=flat-square&labelColor=171717&logo=github&logoColor=white)](https://github.com/Oxygen-Low/Bolt.diy/stargazers)
+[![GitHub stars](https://img.shields.io/github/stars/Oxygen-Low/Bolt.diy?style=flat-square&labelColor=171717&color=FF570A&logo=github&logoColor=white)](https://github.com/Oxygen-Low/Bolt.diy/stargazers)
+
+[![GitHub forks](https://img.shields.io/github/forks/Oxygen-Low/Bolt.diy?style=flat-square&labelColor=171717&color=FF570A&logo=github&logoColor=white)](https://github.com/Oxygen-Low/Bolt.diy/network/members)
+
+[![Last commit](https://img.shields.io/github/last-commit/Oxygen-Low/Bolt.diy?style=flat-square&labelColor=171717&color=FF570A&logo=github&logoColor=white)](https://github.com/Oxygen-Low/Bolt.diy/commits/main)
+
 
 
 
