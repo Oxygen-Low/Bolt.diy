@@ -25,7 +25,7 @@ Here is a list of all the features we added that are different from the normal B
 
 Here are all the things we are planning to add, in order, with their development status:
 
-Automatic Updates - Automatic updates depending on the branch. Update check every hour. - Planned
+Automatic Updates - Automatic updates depending on the branch. Update check every 30 minutes. - Planned
 
 # Experimental/Beta Branch
 If you want to test some features out early or want to have access to some features early, use the beta branch. You can switch to it with ``git checkout beta``.
