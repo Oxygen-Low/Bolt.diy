@@ -2,9 +2,9 @@ name: Code Quality
 
 on:
   push:
-    branches: [main]
+    branches: [main, beta]
   pull_request:
-    branches: [main]
+    branches: [main, beta]
 
 # Cancel in-progress runs on the same branch/PR  
 concurrency:
