@@ -2,6 +2,11 @@ const { exec } = require('child_process');
 const util = require('util');
 const execAsync = util.promisify(exec);
 
+// Wrapper with timeout
+async function execWithTimeout(command, timeoutMs = 30000) {
+  return execAsync(command, { timeout: timeoutMs });
+}
+
 /**
  * Checks the Git remote for new commits and, if found, pulls the updates and installs dependencies.
  *
