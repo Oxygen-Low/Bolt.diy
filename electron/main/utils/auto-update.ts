@@ -11,6 +11,15 @@ import { isDev } from './constants';
 
 const autoUpdater: AppUpdater = (electronUpdater as any).default.autoUpdater;
 
+/**
+ * Initialize and configure the application's auto-update behavior and user prompts.
+ *
+ * Sets up the updater's logger and update-config path, disables automatic downloading,
+ * registers event handlers to prompt the user when updates are available or downloaded,
+ * attempts to back up the app's `.env.local` to the user's data directory when the user
+ * accepts an available update, triggers downloads and installs based on user choice,
+ * performs an initial update check, and schedules periodic checks every 30 minutes.
+ */
 export async function setupAutoUpdater() {
   const envLocalPath = path.join(app.getAppPath(), '.env.local');
   const backupPath = path.join(app.getPath('userData'), '.env.local.bak');

@@ -69,6 +69,11 @@ declare global {
   var __electron__: typeof electron;
 }
 
+/**
+ * Restores a .env.local file from a backup in the application's userData directory if present.
+ *
+ * Moves userData/.env.local.bak to the app root as .env.local. If the backup is missing the function does nothing; any other error is logged.
+ */
 async function restoreEnvLocal() {
   const envLocalPath = path.join(app.getAppPath(), '.env.local');
   const backupPath = path.join(app.getPath('userData'), '.env.local.bak');
@@ -83,7 +88,7 @@ async function restoreEnvLocal() {
   } catch (error) {
     // If the backup doesn't exist, this will throw an error, which we can ignore.
     // We only need to log other unexpected errors.
-    if (error instanceof Error && 'code' in error && error.code !== 'ENOENT') {
+    if (error.code !== 'ENOENT') {
       log.error('Failed to restore .env.local:', error);
     }
   }
