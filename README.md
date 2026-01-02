@@ -11,12 +11,16 @@ git clone https://github.com/Oxygen-Low/Bolt.diy
 cd Bolt.diy
 pnpm install
 ```
-After it finishes, you can run ``pnpm run dev`` or ``pnpm run dev --host`` or just do whatever you want with it.
+After it finishes, you can run ``pnpm run dev`` or ``pnpm run dev --host`` or do whatever you want with it.
 
 # Credits
 
-It would be almost impossible to maintain and update this by myself (since I have to constantly work on other projects), so I use:
+It would be almost impossible to maintain and update this by myself (since I have to work on other projects constantly), so I use:
+
 [CodeRabbit](https://www.coderabbit.ai/)
+
+[Google Labs Jules](https://jules.google.com/)
+
 
 # Licensing
 
