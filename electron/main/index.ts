@@ -3,6 +3,7 @@ import { createRequestHandler } from '@remix-run/node';
 import electron, { app, BrowserWindow, ipcMain, protocol, session } from 'electron';
 import log from 'electron-log';
 import path from 'node:path';
+import { promises as fs } from 'node:fs';
 import * as pkg from '../../package.json';
 import { setupAutoUpdater } from './utils/auto-update';
 import { isDev, DEFAULT_PORT } from './utils/constants';
@@ -68,9 +69,31 @@ declare global {
   var __electron__: typeof electron;
 }
 
+async function restoreEnvLocal() {
+  const envLocalPath = path.join(app.getAppPath(), '.env.local');
+  const backupPath = path.join(app.getPath('userData'), '.env.local.bak');
+
+  try {
+    // Check if a backup exists
+    await fs.access(backupPath);
+
+    // If it exists, move it to the app's root directory
+    await fs.rename(backupPath, envLocalPath);
+    log.info('.env.local restored successfully.');
+  } catch (error) {
+    // If the backup doesn't exist, this will throw an error, which we can ignore.
+    // We only need to log other unexpected errors.
+    if (error.code !== 'ENOENT') {
+      log.error('Failed to restore .env.local:', error);
+    }
+  }
+}
+
 (async () => {
   await app.whenReady();
   console.log('App is ready');
+
+  await restoreEnvLocal();
 
   // Load any existing cookies from ElectronStore, set as cookie
   await initCookies();

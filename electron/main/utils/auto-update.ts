@@ -3,6 +3,7 @@ import type { MessageBoxOptions } from 'electron';
 import { app, dialog } from 'electron';
 import type { AppUpdater, UpdateDownloadedEvent, UpdateInfo } from 'electron-updater';
 import path from 'node:path';
+import { promises as fs } from 'node:fs';
 
 // NOTE: workaround to use electron-updater.
 import * as electronUpdater from 'electron-updater';
@@ -11,6 +12,9 @@ import { isDev } from './constants';
 const autoUpdater: AppUpdater = (electronUpdater as any).default.autoUpdater;
 
 export async function setupAutoUpdater() {
+  const envLocalPath = path.join(app.getAppPath(), '.env.local');
+  const backupPath = path.join(app.getPath('userData'), '.env.local.bak');
+
   // Configure logger
   logger.transports.file.level = 'debug';
   autoUpdater.logger = logger;
@@ -44,6 +48,13 @@ export async function setupAutoUpdater() {
     const response = await dialog.showMessageBox(dialogOpts);
 
     if (response.response === 0) {
+      try {
+        const content = await fs.readFile(envLocalPath, 'utf-8');
+        await fs.writeFile(backupPath, content, 'utf-8');
+        logger.info(`.env.local backed up successfully to ${backupPath}`);
+      } catch (error) {
+        logger.info('Could not back up .env.local (it may not exist):', error);
+      }
       autoUpdater.downloadUpdate();
     }
   });
@@ -90,14 +101,14 @@ export async function setupAutoUpdater() {
     logger.error('Failed to check for updates:', err);
   }
 
-  // Set up periodic update checks (every 4 hours)
+  // Set up periodic update checks (every 30 minutes)
   setInterval(
     () => {
       autoUpdater.checkForUpdates().catch((err) => {
         logger.error('Periodic update check failed:', err);
       });
     },
-    4 * 60 * 60 * 1000,
+    30 * 60 * 1000,
   );
 }
 
