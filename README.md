@@ -11,7 +11,7 @@ git clone https://github.com/Oxygen-Low/Bolt.diy
 cd Bolt.diy
 pnpm install
 ```
-You can also use ``docker pull ghcr.io/oxygen-low/bolt.diy:sha-e10e28f`` if you use Docker.
+You can also use Docker using our [latest package](https://github.com/Oxygen-Low/Bolt.diy/pkgs/container/bolt.diy).
 
 After it finishes, you need to create the ``.env.local`` file. You can use ``.env.example`` for help.
 
