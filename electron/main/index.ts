@@ -218,7 +218,10 @@ async function restoreEnvLocal() {
     return win;
   })
   .then((win) => setupMenu(win))
-  .then(() => setupAutoUpdater());
+  .then(() => setupAutoUpdater())
+  .catch((error) => {
+    console.error('Error during post-initialization setup:', error);
+  });
 
 app.on('window-all-closed', () => {
   if (process.platform !== 'darwin') {
