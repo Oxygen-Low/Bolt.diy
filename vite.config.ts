@@ -20,6 +20,7 @@ export default defineConfig((config) => {
       target: 'esnext',
     },
     optimizeDeps: {
+      // Exclude xterm packages from pre-bundling to avoid Vite optimization errors
       exclude: ['@xterm/xterm', '@xterm/addon-fit', '@xterm/addon-web-links'],
     },
     plugins: [
