@@ -23,7 +23,9 @@ Here is a list of all the features we added that are different from the normal B
 
 Here are all the things we are planning to add, in order, with their development status:
 
+Authentication System - Allow users to authenticate via the server, with users saving. Passwords encrypted. - Planned
 
+Github Integration - Allow users to add github Personal Access Tokens to import, sync, and create new github repositories, to prevent data loss. - Planned after Authentication System
 
 # Experimental/Beta Branch
 If you want to test some features out early or want to have access to some features early, use the beta branch. You can switch to it with ``git checkout Beta``.
