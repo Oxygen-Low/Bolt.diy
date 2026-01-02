@@ -83,7 +83,7 @@ async function restoreEnvLocal() {
   } catch (error) {
     // If the backup doesn't exist, this will throw an error, which we can ignore.
     // We only need to log other unexpected errors.
-    if (error.code !== 'ENOENT') {
+    if (error instanceof Error && 'code' in error && error.code !== 'ENOENT') {
       log.error('Failed to restore .env.local:', error);
     }
   }
