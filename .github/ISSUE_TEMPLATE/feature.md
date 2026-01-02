@@ -1,10 +1,11 @@
 ---
 name: Feature
-about: A pretty vague description of how a capability of our software can be added or improved.
+about: A pretty vague description of how a capability of our software can be added
+  or improved.
 title: ''
-labels:
-  - feature
+labels: ''
 assignees: ''
+
 ---
 
 # Motivation
