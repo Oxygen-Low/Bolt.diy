@@ -17,19 +17,17 @@ export function GitLabAuthDialog({ isOpen, onClose }: GitLabAuthDialogProps) {
 
   const getSafeGitlabUrl = (base: string): string => {
     try {
-      // Try to parse the user-provided URL; if it has no protocol, assume https.
-      let url: URL;
-      try {
-        url = new URL(base);
-      } catch {
-        url = new URL(base, 'https://gitlab.com');
+      // Prepend https if the URL has no protocol.
+      let preparedBase = base;
+      if (!/^[a-zA-Z][a-zA-Z0-9+.-]*:\/\//.test(preparedBase)) {
+        preparedBase = `https://${preparedBase}`;
       }
+      const url = new URL(preparedBase);
       if (url.protocol !== 'http:' && url.protocol !== 'https:') {
         throw new Error('Unsupported protocol');
       }
-      // Normalize by stripping any trailing slash for consistent path joining.
-      url.pathname = url.pathname.replace(/\/+$/, '');
-      return url.toString().replace(/\/+$/, '');
+      // Return the URL with any trailing slash removed for consistency.
+      return url.href.replace(/\/+$/, '');
     } catch {
       // Fallback to the default GitLab URL if parsing/validation fails.
       return 'https://gitlab.com';
@@ -45,7 +43,7 @@ export function GitLabAuthDialog({ isOpen, onClose }: GitLabAuthDialogProps) {
     }
 
     try {
-      await connect(token, gitlabUrl);
+      await connect(token, safeGitlabUrl);
       toast.success('Successfully connected to GitLab!');
       setToken('');
       onClose();
@@ -54,6 +52,8 @@ export function GitLabAuthDialog({ isOpen, onClose }: GitLabAuthDialogProps) {
       console.error('GitLab connect failed:', error);
     }
   };
+
+  const safeGitlabUrl = getSafeGitlabUrl(gitlabUrl || '');
 
   return (
     <Dialog.Root open={isOpen} onOpenChange={(open) => !open && onClose()}>
@@ -93,11 +93,9 @@ export function GitLabAuthDialog({ isOpen, onClose }: GitLabAuthDialogProps) {
                     className="text-sm text-bolt-elements-textSecondary dark:text-bolt-elements-textSecondary-dark"
                   >
                     Connect your GitLab account to deploy your projects
-                  </p>
+                  </p>.
                 </div>
               </div>
-
-              const safeGitlabUrl = getSafeGitlabUrl(gitlabUrl || '');
 
               <form onSubmit={handleConnect} className="space-y-4">
                 <div>
