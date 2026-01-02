@@ -1,6 +1,6 @@
 This is a fork of Bolt.diy by Oxygen-Low. Feel free to use this for any reason.
 Go check the original repository for better setup instructions.
-Here is a simple setup for Ubuntu 24.12.0:
+Here is a simple setup for a fresh Ubuntu 24.12.0 server:
 
 ``` bash
 curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.40.3/install.sh | bash
@@ -12,6 +12,17 @@ cd Bolt.diy
 pnpm install
 ```
 After it finishes, you can run ``pnpm run dev`` or ``pnpm run dev --host`` or do whatever you want with it.
+
+# Features List
+
+Here is a list of all the features we added (or are planning to add), and are actively maintaining (or developing):
+
+# Experimental/Beta Branch
+If you want to test some features out early, or want to have access to some features early, use the beta branch. You can switch to it with ``git checkout Beta``.
+
+Note that the beta branch will likely contain errors or bugs way more often than the main/stable branch.
+
+Testing for bugs and issues in the beta branch will be appreciated.
 
 # Credits
 
