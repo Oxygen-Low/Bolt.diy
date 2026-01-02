@@ -11,7 +11,7 @@ git clone https://github.com/Oxygen-Low/Bolt.diy
 cd Bolt.diy
 pnpm install
 ```
-You can also use Docker using our [latest package](https://github.com/Oxygen-Low/Bolt.diy/pkgs/container/bolt.diy).
+You can also use Docker using our [latest stable package](https://github.com/Oxygen-Low/Bolt.diy/pkgs/container/bolt.diy-stable) or our [latest beta package](https://github.com/Oxygen-Low/Bolt.diy/pkgs/container/bolt.diy-beta).
 
 After it finishes, you need to create the ``.env.local`` file. You can use ``.env.example`` for help.
 
@@ -25,7 +25,6 @@ Here is a list of all the features we added that are different from the normal B
 
 Here are all the things we are planning to add, in order, with their development status:
 
-Automatic Updates - Automatic updates depending on the branch. Update check every 30 minutes. - Planned
 
 # Experimental/Beta Branch
 If you want to test some features out early or want to have access to some features early, use the beta branch. You can switch to it with ``git checkout beta``.
