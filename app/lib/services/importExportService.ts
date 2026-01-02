@@ -362,26 +362,6 @@ export class ImportExportService {
   // Private helper methods
 
   /**
-   * Sanitize provider settings before storing them in localStorage.
-   * This removes sensitive fields such as API keys so they are not
-   * persisted in clear text in browser storage.
-   */
-  private static _sanitizeProviderSettingsForStorage(providerSettings: any): any {
-    if (!providerSettings || typeof providerSettings !== 'object') {
-      return providerSettings;
-    }
-
-    // Create a shallow copy so we don't mutate the original object
-    const sanitized: any = { ...providerSettings };
-
-    // Remove commonly used sensitive fields if present
-    delete sanitized.apiKeys;
-    delete sanitized.api_keys;
-
-    return sanitized;
-  }
-
-  /**
    * Import settings from a comprehensive format
    * @param data The imported data
    */
@@ -401,13 +381,10 @@ export class ImportExportService {
 
     // Import provider settings
     if (data.providers) {
-      // Import provider_settings to localStorage (sans sensitive data)
+      // Import provider_settings to localStorage
       if (data.providers.provider_settings) {
         try {
-          const sanitizedProviderSettings = this._sanitizeProviderSettingsForStorage(
-            data.providers.provider_settings,
-          );
-          this._safeSetItem('provider_settings', sanitizedProviderSettings);
+          this._safeSetItem('provider_settings', data.providers.provider_settings);
         } catch (err) {
           console.error('Error importing provider settings:', err);
         }
