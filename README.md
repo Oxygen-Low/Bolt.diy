@@ -2,7 +2,7 @@ This is a fork of Bolt.diy by Oxygen-Low. Feel free to use this for any reason.
 
 [![Last commit](https://img.shields.io/github/last-commit/Oxygen-Low/Bolt.diy?style=flat-square&labelColor=171717&color=FF570A&logo=github)](https://github.com/Oxygen-Low/Bolt.diy/commits/main) [![Release version](https://img.shields.io/github/v/release/Oxygen-Low/Bolt.diy?style=flat-square&labelColor=171717&color=FF570A&logo=github)](https://github.com/Oxygen-Low/Bolt.diy/releases) [![License](https://img.shields.io/github/license/Oxygen-Low/Bolt.diy?style=flat-square&labelColor=171717&color=FF570A&logo=github)](https://github.com/Oxygen-Low/Bolt.diy/blob/main/LICENSE)
 
-[![CI/CD](https://github.com/Oxygen-Low/Bolt.diy/actions/workflows/ci.yaml/badge.svg)](https://github.com/Oxygen-Low/Bolt.diy/actions/workflows/ci.yaml)
+[![CI/CD](https://github.com/Oxygen-Low/Bolt.diy/actions/workflows/ci.yaml/badge.svg)](https://github.com/Oxygen-Low/Bolt.diy/actions/workflows/ci.yaml) [![Code Quality](https://github.com/Oxygen-Low/Bolt.diy/actions/workflows/quality.yaml/badge.svg)](https://github.com/Oxygen-Low/Bolt.diy/actions/workflows/quality.yaml)
 
 
 Here is a simple setup for a fresh Ubuntu 24.12.0 server:
