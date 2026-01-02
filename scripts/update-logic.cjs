@@ -2,6 +2,15 @@ const { exec } = require('child_process');
 const util = require('util');
 const execAsync = util.promisify(exec);
 
+/**
+ * Checks the Git remote for new commits and, if found, pulls the updates and installs dependencies.
+ *
+ * Performs a fetch to compare the local HEAD with the upstream; when they differ, pulls changes,
+ * prints the latest commit message, runs dependency installation, and reports that an update was applied.
+ * If the repository is already up to date or an error occurs, no changes are made.
+ *
+ * @returns {boolean} `true` if updates were applied, `false` if already up to date or if an error occurred.
+ */
 async function checkForUpdatesAsync() {
   try {
     console.log('Checking for updates...');
