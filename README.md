@@ -1,7 +1,9 @@
-![CodeRabbit Pull Request Reviews](https://img.shields.io/coderabbit/prs/github/Oxygen-Low/Bolt.diy?utm_source=oss&utm_medium=github&utm_campaign=Oxygen-Low%2FBolt.diy&labelColor=171717&color=FF570A&link=https%3A%2F%2Fcoderabbit.ai&label=CodeRabbit+Reviews)
-
 This is a fork of Bolt.diy by Oxygen-Low. Feel free to use this for any reason.
-Go check the original repository for better setup instructions.
+
+![CodeRabbit Pull Request Reviews](https://img.shields.io/coderabbit/prs/github/Oxygen-Low/Bolt.diy?utm_source=oss&utm_medium=github&utm_campaign=Oxygen-Low%2FBolt.diy&labelColor=171717&color=FF570A&link=https%3A%2F%2Fcoderabbit.ai&label=CodeRabbit+Reviews)[![GitHub stars](https://img.shields.io/github/stars/Oxygen-Low/Bolt.diy?style=flat-square&logo=github)](https://github.com/Oxygen-Low/Bolt.diy/stargazers)
+
+
+
 Here is a simple setup for a fresh Ubuntu 24.12.0 server:
 
 ``` bash
