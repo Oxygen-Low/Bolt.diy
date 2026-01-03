@@ -62,6 +62,8 @@ jobs:
           labels: ${{ steps.meta.outputs.labels }}
 
       - name: Check manifest
-        run: docker buildx imagetools inspect \
-          ${{ env.REGISTRY }}/${{ steps.package.outputs.name }}:${{ steps.meta.outputs.version }}
+        run: |
+          docker buildx imagetools inspect \
+          ${{ env.REGISTRY }}/${{ steps.package.outputs.name }}:latest
+
 
