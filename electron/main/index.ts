@@ -219,6 +219,7 @@ async function restoreEnvLocal() {
   })
   .then((win) => setupMenu(win))
   .then(() => setupAutoUpdater())
+  .then(() => reloadOnChange())
   .catch((error) => {
     console.error('Error during post-initialization setup:', error);
   });
@@ -228,5 +229,3 @@ app.on('window-all-closed', () => {
     app.quit();
   }
 });
-
-reloadOnChange();
