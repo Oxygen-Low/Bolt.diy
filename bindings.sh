@@ -13,8 +13,8 @@ if [ -f ".env.local" ]; then
     if [[ ! "$line" =~ ^# ]] && [[ -n "$line" ]]; then
       name=$(echo "$line" | cut -d '=' -f 1)
       value=$(echo "$line" | cut -d '=' -f 2-)
-      value=$(echo $value | sed 's/^"\(.*\)"$/\1/')
-      bindings+="--binding ${name}=${value} "
+      value=$(echo "$value" | sed 's/^"\(.*\)"$/\1/')
+      bindings+=$(printf -- "--binding %s=%q " "$name" "$value")
     fi
   done < .env.local
 else
@@ -23,11 +23,11 @@ else
   # Generate bindings for each environment variable if it exists
   for var in "${env_vars[@]}"; do
     if [ -n "${!var}" ]; then
-      bindings+="--binding ${var}=${!var} "
+      bindings+=$(printf -- "--binding %s=%q " "$var" "${!var}")
     fi
   done
 fi
 
-bindings=$(echo $bindings | sed 's/[[:space:]]*$//')
+bindings=$(echo "$bindings" | sed 's/[[:space:]]*$//')
 
-echo $bindings
+echo "$bindings"
