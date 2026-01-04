@@ -140,7 +140,7 @@ function crossOriginIsolationPlugin() {
       server.middlewares.use((req: Connect.IncomingMessage, res: ServerResponse, next: Connect.NextFunction) => {
         // Apply headers only to the main document, not all assets
         // This is necessary to allow Vite's dev server to function correctly
-        if (req.url && (req.url === '/' || req.url.endsWith('.html'))) {
+        if (req.headers.accept?.includes('text/html')) {
           res.setHeader('Cross-Origin-Opener-Policy', 'same-origin');
           res.setHeader('Cross-Origin-Embedder-Policy', 'require-corp');
         }
