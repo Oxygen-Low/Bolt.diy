@@ -90,6 +90,14 @@ export default defineConfig((config) => {
   };
 });
 
+/**
+ * Provides a Vite dev-server plugin that detects Chrome/Chromium 129 and shows an explanatory HTML message.
+ *
+ * The plugin registers a middleware on the dev server which responds with a short HTML notice when the
+ * request's User-Agent indicates Chrome or Chromium version 129; other requests continue through the middleware chain.
+ *
+ * @returns A Vite plugin object that adds the described middleware via `configureServer`.
+ */
 function chrome129IssuePlugin() {
   return {
     name: 'chrome129IssuePlugin',
@@ -115,6 +123,15 @@ function chrome129IssuePlugin() {
   };
 }
 
+/**
+ * Create a Vite dev-server plugin that sets cross-origin isolation headers on the main HTML document.
+ *
+ * When the dev server receives a request for the root path ("/") or any ".html" file, the plugin sets
+ * `Cross-Origin-Opener-Policy: same-origin` and `Cross-Origin-Embedder-Policy: require-corp` to enable
+ * cross-origin isolation for that document.
+ *
+ * @returns A Vite plugin object that applies the cross-origin isolation headers to the main document requests.
+ */
 function crossOriginIsolationPlugin() {
   return {
     name: 'cross-origin-isolation',
