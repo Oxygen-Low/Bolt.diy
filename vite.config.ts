@@ -125,13 +125,13 @@ function chrome129IssuePlugin() {
 }
 
 /**
- * Create a Vite dev-server plugin that sets cross-origin isolation headers on the main HTML document.
+ * Apply cross-origin isolation headers to HTML document responses served by the Vite dev server.
  *
- * When the dev server receives a request for the root path ("/") or any ".html" file, the plugin sets
+ * When a request's Accept header includes `text/html`, the plugin sets
  * `Cross-Origin-Opener-Policy: same-origin` and `Cross-Origin-Embedder-Policy: require-corp` to enable
  * cross-origin isolation for that document.
  *
- * @returns A Vite plugin object that applies the cross-origin isolation headers to the main document requests.
+ * @returns A Vite plugin that sets the cross-origin isolation headers on HTML document responses.
  */
 function crossOriginIsolationPlugin() {
   return {
@@ -140,7 +140,7 @@ function crossOriginIsolationPlugin() {
       server.middlewares.use((req: Connect.IncomingMessage, res: ServerResponse, next: Connect.NextFunction) => {
         // Apply headers only to the main document, not all assets
         // This is necessary to allow Vite's dev server to function correctly
-        if (req.url && (req.url === '/' || req.url.endsWith('.html'))) {
+        if (req.headers.accept?.includes('text/html')) {
           res.setHeader('Cross-Origin-Opener-Policy', 'same-origin');
           res.setHeader('Cross-Origin-Embedder-Policy', 'require-corp');
         }
