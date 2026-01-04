@@ -109,8 +109,8 @@ jobs:
       - name: Create GitHub Release
         uses: softprops/action-gh-release@v2
         with:
-          tag_name: ${{ github.ref_name }}
-          name: Electron Release
+          tag_name: ${{ inputs.electron_version }}
+          name: Electron ${{ inputs.electron_version }}
           files: |
             dist/*.exe
             dist/*.dmg
