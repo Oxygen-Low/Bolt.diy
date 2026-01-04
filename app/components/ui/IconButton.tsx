@@ -53,6 +53,7 @@ export const IconButton = memo(
             className,
           )}
           title={title}
+          aria-label={title}
           disabled={disabled}
           onClick={(event) => {
             if (disabled) {
