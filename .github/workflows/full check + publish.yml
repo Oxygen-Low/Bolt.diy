@@ -2,6 +2,11 @@ name: Full Check And Publish
 
 on:
   workflow_dispatch:
+    inputs:
+      electron_version:
+        description: "Electron release version (e.g. v1.2.3)"
+        required: true
+        type: string
 
 jobs:
   ci:
