@@ -1,6 +1,7 @@
 import { cloudflareDevProxyVitePlugin as remixCloudflareDevProxy, vitePlugin as remixVitePlugin } from '@remix-run/dev';
 import UnoCSS from 'unocss/vite';
-import { defineConfig, type ViteDevServer } from 'vite';
+import { type ServerResponse } from 'http';
+import { defineConfig, type ViteDevServer, type Connect } from 'vite';
 import { nodePolyfills } from 'vite-plugin-node-polyfills';
 import { optimizeCssModules } from 'vite-plugin-optimize-css-modules';
 import tsconfigPaths from 'vite-tsconfig-paths';
@@ -102,7 +103,7 @@ function chrome129IssuePlugin() {
   return {
     name: 'chrome129IssuePlugin',
     configureServer(server: ViteDevServer) {
-      server.middlewares.use((req, res, next) => {
+      server.middlewares.use((req: Connect.IncomingMessage, res: ServerResponse, next: Connect.NextFunction) => {
         const raw = req.headers['user-agent']?.match(/Chrom(e|ium)\/([0-9]+)\./);
 
         if (raw) {
@@ -135,11 +136,11 @@ function chrome129IssuePlugin() {
 function crossOriginIsolationPlugin() {
   return {
     name: 'cross-origin-isolation',
-    configureServer(server) {
-      server.middlewares.use((req, res, next) => {
+    configureServer(server: ViteDevServer) {
+      server.middlewares.use((req: Connect.IncomingMessage, res: ServerResponse, next: Connect.NextFunction) => {
         // Apply headers only to the main document, not all assets
         // This is necessary to allow Vite's dev server to function correctly
-        if (req.url === '/' || req.url.endsWith('.html')) {
+        if (req.url && (req.url === '/' || req.url.endsWith('.html'))) {
           res.setHeader('Cross-Origin-Opener-Policy', 'same-origin');
           res.setHeader('Cross-Origin-Embedder-Policy', 'require-corp');
         }
