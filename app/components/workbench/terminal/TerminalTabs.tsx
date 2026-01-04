@@ -186,10 +186,13 @@ export const TerminalTabs = memo(() => {
                 </React.Fragment>
               );
             })}
-            {terminalCount < MAX_TERMINALS && <IconButton icon="i-ph:plus" size="md" onClick={addTerminal} />}
+            {terminalCount < MAX_TERMINALS && (
+              <IconButton icon="i-ph:plus" size="md" onClick={addTerminal} ariaLabel="Add new terminal" />
+            )}
             <IconButton
               icon="i-ph:arrow-clockwise"
               title="Reset Terminal"
+              ariaLabel="Reset Terminal"
               size="md"
               onClick={() => {
                 const ref = terminalRefs.current.get(activeTerminal);
@@ -211,6 +214,7 @@ export const TerminalTabs = memo(() => {
               className="ml-auto"
               icon="i-ph:caret-down"
               title="Close"
+              ariaLabel="Close terminal"
               size="md"
               onClick={() => workbenchStore.toggleTerminal(false)}
             />

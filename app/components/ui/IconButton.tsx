@@ -15,11 +15,13 @@ interface BaseIconButtonProps {
 
 type IconButtonWithoutChildrenProps = {
   icon: string;
+  ariaLabel: string;
   children?: undefined;
 } & BaseIconButtonProps;
 
 type IconButtonWithChildrenProps = {
   icon?: undefined;
+  ariaLabel?: undefined;
   children: string | JSX.Element | JSX.Element[];
 } & BaseIconButtonProps;
 
@@ -31,6 +33,7 @@ export const IconButton = memo(
     (
       {
         icon,
+        ariaLabel,
         size = 'xl',
         className,
         iconClassName,
@@ -42,6 +45,12 @@ export const IconButton = memo(
       }: IconButtonProps,
       ref: ForwardedRef<HTMLButtonElement>,
     ) => {
+      if (process.env.NODE_ENV === 'development' && icon && !ariaLabel) {
+        console.error(
+          'Warning: Failed prop type: The prop `ariaLabel` is marked as required in `IconButton` for icon-only buttons, but its value is `undefined`.',
+        );
+      }
+
       return (
         <button
           ref={ref}
@@ -53,7 +62,7 @@ export const IconButton = memo(
             className,
           )}
           title={title}
-          aria-label={title}
+          aria-label={ariaLabel}
           disabled={disabled}
           onClick={(event) => {
             if (disabled) {

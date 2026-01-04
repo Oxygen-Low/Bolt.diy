@@ -667,11 +667,12 @@ export const Preview = memo(({ setSelectedElement }: PreviewProps) => {
       )}
       <div className="bg-bolt-elements-background-depth-2 p-2 flex items-center gap-2">
         <div className="flex items-center gap-2">
-          <IconButton icon="i-ph:arrow-clockwise" onClick={reloadPreview} />
+          <IconButton icon="i-ph:arrow-clockwise" onClick={reloadPreview} ariaLabel="Reload preview" />
           <IconButton
             icon="i-ph:selection"
             onClick={() => setIsSelectionMode(!isSelectionMode)}
             className={isSelectionMode ? 'bg-bolt-elements-background-depth-3' : ''}
+            ariaLabel="Toggle selection mode"
           />
         </div>
 
@@ -729,9 +730,17 @@ export const Preview = memo(({ setSelectedElement }: PreviewProps) => {
             icon="i-ph:devices"
             onClick={toggleDeviceMode}
             title={isDeviceModeOn ? 'Switch to Responsive Mode' : 'Switch to Device Mode'}
+            ariaLabel={isDeviceModeOn ? 'Switch to Responsive Mode' : 'Switch to Device Mode'}
           />
 
-          {expoUrl && <IconButton icon="i-ph:qr-code" onClick={() => setIsExpoQrModalOpen(true)} title="Show QR" />}
+          {expoUrl && (
+            <IconButton
+              icon="i-ph:qr-code"
+              onClick={() => setIsExpoQrModalOpen(true)}
+              title="Show QR"
+              ariaLabel="Show QR code"
+            />
+          )}
 
           <ExpoQrModal open={isExpoQrModalOpen} onClose={() => setIsExpoQrModalOpen(false)} />
 
@@ -741,11 +750,13 @@ export const Preview = memo(({ setSelectedElement }: PreviewProps) => {
                 icon="i-ph:device-rotate"
                 onClick={() => setIsLandscape(!isLandscape)}
                 title={isLandscape ? 'Switch to Portrait' : 'Switch to Landscape'}
+                ariaLabel={isLandscape ? 'Switch to Portrait' : 'Switch to Landscape'}
               />
               <IconButton
                 icon={showDeviceFrameInPreview ? 'i-ph:device-mobile' : 'i-ph:device-mobile-slash'}
                 onClick={() => setShowDeviceFrameInPreview(!showDeviceFrameInPreview)}
                 title={showDeviceFrameInPreview ? 'Hide Device Frame' : 'Show Device Frame'}
+                ariaLabel={showDeviceFrameInPreview ? 'Hide Device Frame' : 'Show Device Frame'}
               />
             </>
           )}
@@ -756,11 +767,13 @@ export const Preview = memo(({ setSelectedElement }: PreviewProps) => {
               isInspectorMode ? 'bg-bolt-elements-background-depth-3 !text-bolt-elements-item-contentAccent' : ''
             }
             title={isInspectorMode ? 'Disable Element Inspector' : 'Enable Element Inspector'}
+            ariaLabel={isInspectorMode ? 'Disable Element Inspector' : 'Enable Element Inspector'}
           />
           <IconButton
             icon={isFullscreen ? 'i-ph:arrows-in' : 'i-ph:arrows-out'}
             onClick={toggleFullscreen}
             title={isFullscreen ? 'Exit Full Screen' : 'Full Screen'}
+            ariaLabel={isFullscreen ? 'Exit Full Screen' : 'Full Screen'}
           />
 
           <div className="flex items-center relative">
@@ -768,6 +781,7 @@ export const Preview = memo(({ setSelectedElement }: PreviewProps) => {
               icon="i-ph:list"
               onClick={() => setIsWindowSizeDropdownOpen(!isWindowSizeDropdownOpen)}
               title="New Window Options"
+              ariaLabel="New Window Options"
             />
 
             {isWindowSizeDropdownOpen && (

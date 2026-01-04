@@ -11,6 +11,7 @@ export const SettingsButton = memo(({ onClick }: SettingsButtonProps) => {
       icon="i-ph:gear"
       size="xl"
       title="Settings"
+      ariaLabel="Settings"
       data-testid="settings-button"
       className="text-[#666] hover:text-bolt-elements-textPrimary hover:bg-bolt-elements-item-backgroundActive/10 transition-colors"
     />
@@ -28,6 +29,7 @@ export const HelpButton = memo(({ onClick }: HelpButtonProps) => {
       icon="i-ph:question"
       size="xl"
       title="Help & Documentation"
+      ariaLabel="Help & Documentation"
       data-testid="help-button"
       className="text-[#666] hover:text-bolt-elements-textPrimary hover:bg-bolt-elements-item-backgroundActive/10 transition-colors"
     />
