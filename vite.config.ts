@@ -58,6 +58,7 @@ export default defineConfig((config) => {
       }),
       UnoCSS(),
       tsconfigPaths(),
+      crossOriginIsolationPlugin(),
       chrome129IssuePlugin(),
       config.mode === 'production' && optimizeCssModules({ apply: 'build' }),
     ],
@@ -108,7 +109,23 @@ function chrome129IssuePlugin() {
             return;
           }
         }
+        next();
+      });
+    },
+  };
+}
 
+function crossOriginIsolationPlugin() {
+  return {
+    name: 'cross-origin-isolation',
+    configureServer(server) {
+      server.middlewares.use((req, res, next) => {
+        // Apply headers only to the main document, not all assets
+        // This is necessary to allow Vite's dev server to function correctly
+        if (req.url === '/' || req.url.endsWith('.html')) {
+          res.setHeader('Cross-Origin-Opener-Policy', 'same-origin');
+          res.setHeader('Cross-Origin-Embedder-Policy', 'require-corp');
+        }
         next();
       });
     },
