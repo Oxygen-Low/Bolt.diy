@@ -48,6 +48,7 @@ export default defineConfig((config) => {
           return null;
         },
       },
+      crossOriginIsolationPlugin(),
       config.mode !== 'test' && remixCloudflareDevProxy(),
       remixVitePlugin({
         future: {
@@ -59,7 +60,6 @@ export default defineConfig((config) => {
       }),
       UnoCSS(),
       tsconfigPaths(),
-      crossOriginIsolationPlugin(),
       chrome129IssuePlugin(),
       config.mode === 'production' && optimizeCssModules({ apply: 'build' }),
     ],
