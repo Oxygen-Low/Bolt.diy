@@ -7,10 +7,10 @@ ENV HUSKY=0
 ENV CI=true
 
 # Use pnpm
-RUN corepack enable && corepack prepare pnpm@9.15.9 --activate
+RUN corepack enable && corepack prepare pnpm@10.27.0 --activate
 
-# Ensure git is available for build and runtime scripts
-RUN apt-get update && apt-get install -y --no-install-recommends git \
+# Ensure git and ca-certificates are available for build and runtime scripts
+RUN apt-get update && apt-get install -y --no-install-recommends git=1:2.39.5-0+deb12u2 ca-certificates=20230311+deb12u1 \
   && rm -rf /var/lib/apt/lists/*
 
 # Accept (optional) build-time public URL for Remix/Vite (Coolify can pass it)
