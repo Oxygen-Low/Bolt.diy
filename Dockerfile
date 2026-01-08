@@ -24,6 +24,7 @@ RUN pnpm fetch
 # Copy source and build
 COPY . .
 # install with dev deps (needed to build)
+RUN pnpm install -g wrangler
 RUN pnpm install --offline --frozen-lockfile
 
 # Build the Remix app (SSR + client)
