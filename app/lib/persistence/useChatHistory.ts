@@ -34,7 +34,53 @@ export interface ChatHistoryItem {
 
 const persistenceEnabled = !import.meta.env.VITE_DISABLE_PERSISTENCE;
 
-export const db = persistenceEnabled ? await openDatabase() : undefined;
+// Initialize database lazily to avoid issues in SSR/Node.js environments
+let dbInstance: IDBDatabase | undefined | null = null;
+let dbInitialized = false;
+
+async function getDb() {
+  if (dbInitialized) {
+    return dbInstance;
+  }
+  
+  dbInitialized = true;
+  
+  if (!persistenceEnabled) {
+    return undefined;
+  }
+  
+  try {
+    dbInstance = await openDatabase();
+  } catch {
+    dbInstance = undefined;
+  }
+  
+  return dbInstance;
+}
+
+// Create a getter that returns the current database instance
+// This will be undefined until the first useEffect runs
+export let db: IDBDatabase | undefined = undefined;
+
+async function initializeDb() {
+  if (!persistenceEnabled) {
+    db = undefined;
+    return;
+  }
+  
+  try {
+    db = await openDatabase();
+  } catch {
+    db = undefined;
+  }
+}
+
+// Initialize database on module load if in browser
+if (typeof window !== 'undefined' && persistenceEnabled) {
+  initializeDb().catch(() => {
+    // Silently fail if indexedDB is not available
+  });
+}
 
 export const chatId = atom<string | undefined>(undefined);
 export const description = atom<string | undefined>(undefined);
@@ -50,10 +96,18 @@ export function useChatHistory() {
   const [urlId, setUrlId] = useState<string | undefined>();
 
   useEffect(() => {
+    // Initialize database if needed
+    if (!dbInitialized && persistenceEnabled && typeof window !== 'undefined') {
+      initializeDb().catch(() => {
+        // Silently fail if indexedDB is not available
+      });
+    }
+
+    // If database is still not available, mark as ready and show error if persistence was enabled
     if (!db) {
       setReady(true);
 
-      if (persistenceEnabled) {
+      if (persistenceEnabled && dbInitialized) {
         const error = new Error('Chat persistence is unavailable');
         logStore.logError('Chat persistence initialization failed', error);
         toast.error('Chat persistence is unavailable');
