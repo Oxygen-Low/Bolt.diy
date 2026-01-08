@@ -25,15 +25,7 @@ You can also use Docker
 
 After it finishes, you need to create the ``.env.local`` file. You can use ``.env.example`` for help.
 
-After you create the ``.env.local`` file, you can run ``pnpm run dev`` or ``pnpm run dev --host`` or just do whatever you want with it.
-
-# Features List
-
-Here is a list of all the features we added that are different from the normal Bolt.diy:
-
-# Roadmap
-
-Here are all the things we are planning to add, in order, with their development status:
+After you create the ``.env.local`` file, you can run ```pnpm run dev``` or ```pnpm run dev --host``` or just do whatever you want with it.
 
 
 # Credits
