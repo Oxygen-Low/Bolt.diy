@@ -25,7 +25,15 @@ You can also use Docker
 
 After it finishes, you need to create the ``.env.local`` file. You can use ``.env.example`` for help.
 
-After you create the ``.env.local`` file, you can run ```pnpm run dev``` or ```pnpm run dev --host``` or just do whatever you want with it.
+After you create the ``.env.local`` file, you can run 
+``` bash
+pnpm run dev
+```
+or
+``` bash
+pnpm run dev --host
+```
+or just do whatever you want with it.
 
 
 # Credits
