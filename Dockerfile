@@ -24,7 +24,6 @@ RUN pnpm fetch
 # Copy source and build
 COPY . .
 # install with dev deps (needed to build)
-RUN pnpm install -g wrangler
 RUN pnpm install --offline --frozen-lockfile
 
 # Build the Remix app (SSR + client)
@@ -34,6 +33,7 @@ RUN NODE_OPTIONS=--max-old-space-size=4096 pnpm run build
 FROM build AS prod-deps
 
 # Keep only production deps for runtime
+RUN pnpm install -g wrangler
 RUN pnpm prune --prod --ignore-scripts
 
 
